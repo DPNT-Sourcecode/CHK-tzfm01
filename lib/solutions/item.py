@@ -18,6 +18,8 @@ class Item(object):
         self._quantity = 0
         self.total_price = 0
         self.parent = []
+        self.regexs = OFFERS_RULES
+        self.regexs['one_for_free'] = self.regexs['one_for_free'].format(self.type)
 
     @quantity.setter
     def quantity(self, value):
