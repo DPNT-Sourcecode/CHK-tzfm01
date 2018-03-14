@@ -66,11 +66,31 @@ class Item(object):
             if item.type == y:
                 item.update_quantity(included_offers)
 
-    def calculate_parents(self):
+    def calculate_parents(self, all_items):
         """
         Match rules like 3R get one Q free "^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$"
+        I need this to calculate dependencies. The parents price calculation depends on current item offers.
+        Therefore the parent needs to be calculated last.
         :return:
         """
         for offer in self.offers:
             result = re.match(OFFERS_RULES['nX_Y_free'], offer)
             if result:
+                group_quantity = result.groupdict()['group_quantity']
+                p = result.groupdict()['item']
+                for item in all_items:
+                    if item.type == p:
+                        self.parent.append(item)
+
+    def calculate_price(self):
+        methods = {
+            'itemx': self.itemx,
+            'one_for_free': self.one_for_free,
+            'nX_Y_free': self.nX_Y_free
+        }
+        for offer in self.offers:
+            for rule in OFFERS_RULES:
+                result = re.match(OFFERS_RULES['rule'], offer)
+                if not result:
+                    continue
+                if rule ==
