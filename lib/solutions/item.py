@@ -32,7 +32,7 @@ class Item(object):
     def update_quantity(self, n):
         self._quantity -= n
         # this is from outside; should recalculate the price when this happens
-        # self.calculate_price()
+        self.calculate_price()
 
     def individual_price(self):
         self.total_price += self._quantity * self.price
@@ -106,3 +106,5 @@ class Item(object):
                     methods[rule](result.groupdict()['group_quantity'])
                 elif rule == 'nX_Y_free':
                     methods[rule](result.groupdict()['group_quantity'], result.groupdict()['item'])
+                else:
+                    print 'Say what??? {}'.format(rule)
