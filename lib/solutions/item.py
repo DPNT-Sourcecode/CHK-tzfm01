@@ -1,3 +1,8 @@
+OFFERS_RULES = {
+    'itemx': '',
+    'one_for_free': '',
+    'nX_Y_free': '^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$'
+}
 class Item(object):
     """
     This is a item, product from the supermarket basket
@@ -61,6 +66,6 @@ class Item(object):
 
     def calculate_parents(self):
         """
-        Match rules like 3R get one Q free [\]
+        Match rules like 3R get one Q free "^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$"
         :return:
         """
