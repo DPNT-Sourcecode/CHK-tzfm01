@@ -16,6 +16,12 @@ def calculate_As(As):
     print 'as_ind', as_individual
     return sum([as_individual, as_3x, as_5x])
 
+def calculate_Fs(Fs):
+    fs_3x = (Fs // 3) * 20
+    fs_individual = (Fs % 3) * 10
+    return sum([fs_3x, fs_individual])
+
+
 def checkout(skus):
     # if not isinstance(skus, unicode):
     #     return -1
@@ -24,7 +30,7 @@ def checkout(skus):
     if skus == ' ':
         # if it's a string with a space
         return -1
-    items = ['A', 'B', 'C', 'D', 'E']
+    items = ['A', 'B', 'C', 'D', 'E', 'F']
     for item in items:
         skus_copy = skus_copy.replace(item, '')
     if skus_copy != '':
@@ -40,6 +46,8 @@ def checkout(skus):
     es_sum = Es * 40
     Cs = skus.count('C') * 20
     Ds = skus.count('D') * 15
+    Fs = skus.count('F')
+    fs_sum = calculate_Fs(Fs)
     as_sum = 0
     if As > 0:
         as_sum += calculate_As(As)
@@ -54,5 +62,6 @@ def checkout(skus):
     print 'Cs', Cs
     print 'Ds', Ds
     print 'Es', es_sum
-    return Cs + Ds + bs_sum + as_sum + es_sum
+    print 'Fs', fs_sum
+    return Cs + Ds + bs_sum + as_sum + es_sum + fs_sum
 
