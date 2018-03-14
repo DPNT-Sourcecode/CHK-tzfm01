@@ -23,7 +23,7 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout("E"), 40)
 
     def test_checkout_B(self):
-        self.assertEqual(checkout("AAAAA"), 200)
+        self.assertEqual(checkout("ABCDEF"), 165)
 
 if __name__ == '__main__':
     unittest.main()

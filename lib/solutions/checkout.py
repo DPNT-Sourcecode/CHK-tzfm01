@@ -25,7 +25,7 @@ def calculate_Fs(Fs):
 def checkout(skus):
     # if not isinstance(skus, unicode):
     #     return -1
-
+    skus = str(skus)
     skus_copy = skus
     if skus == ' ':
         # if it's a string with a space
@@ -34,7 +34,7 @@ def checkout(skus):
     for item in items:
         skus_copy = skus_copy.replace(item, '')
     if skus_copy != '':
-        print 'replaces ',skus_copy
+        print 'replaces ', skus_copy
         return -1
 
 
