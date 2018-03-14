@@ -1,6 +1,8 @@
+import re
+
 OFFERS_RULES = {
-    'itemx': '',
-    'one_for_free': '',
+    'itemx': '^(?P<group_quantity>[1-9]+)[A-Z] for (?P<group_price>[0-9]+)$',
+    'one_for_free': '^(?P<group_quantity>[1-9]+)[A-Z] get one {} free$',
     'nX_Y_free': '^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$'
 }
 class Item(object):
@@ -69,3 +71,9 @@ class Item(object):
         Match rules like 3R get one Q free "^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$"
         :return:
         """
+        for offer in self.offers:
+            try:
+                result = re.match(OFFERS_RULES['nX_Y_free'], offer)
+                if result
+            except Exception as err:
+                print 'unrecognized offer: {}. Error: {}'.format(offer, err)
