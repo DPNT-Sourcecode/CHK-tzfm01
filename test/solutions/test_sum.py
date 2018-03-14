@@ -20,10 +20,10 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout(""), 0)
 
     def test_checkout_A(self):
-        self.assertEqual(checkout("AA"), 50)
+        self.assertEqual(checkout("E"), 40)
 
     def test_checkout_B(self):
-        self.assertEqual(checkout("B"), 30)
+        self.assertEqual(checkout("AAAAA"), 200)
 
 if __name__ == '__main__':
     unittest.main()
