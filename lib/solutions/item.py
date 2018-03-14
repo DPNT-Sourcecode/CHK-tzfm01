@@ -93,10 +93,16 @@ class Item(object):
             'nX_Y_free': self.nX_Y_free
         }
         for offer in self.offers:
-            for rule in OFFERS_RULES:
-                if rule == 'one_for_free':
-                    rule = rule.format(self.type)
+            for rule in self.regexs:
                 result = re.match(OFFERS_RULES['rule'], offer)
                 if not result:
                     continue
-                methods[rule](result.groupdict()['group_quantity'], result.groupdict()['item'])
+                # in know this is not the elegant way but I need to do this because
+                # the dictionary with matched elements does not have the same keys for all the rules,
+                # it's not a generic one
+                if rule == 'itemx':
+                    methods[rule](result.groupdict()['group_quantity'], result.groupdict()['group_price'])
+                elif rule == 'one_for_free':
+                    methods[rule](result.groupdict()['group_quantity'])
+                elif rule == 'nX_Y_free':
+                    methods[rule](result.groupdict()['group_quantity'], result.groupdict()['item'])
