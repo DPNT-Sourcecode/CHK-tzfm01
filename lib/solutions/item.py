@@ -5,6 +5,8 @@ OFFERS_RULES = {
     'one_for_free': '^(?P<group_quantity>[1-9]+)[A-Z] get one {} free$',
     'nX_Y_free': '^(?P<group_quantity>[1-9]+)[A-Z] get one (?P<item>[A-Z]) free$'
 }
+
+
 class Item(object):
     """
     This is a item, product from the supermarket basket
@@ -90,7 +92,9 @@ class Item(object):
         }
         for offer in self.offers:
             for rule in OFFERS_RULES:
+                if rule == 'one_for_free':
+                    rule = rule.format(self.type)
                 result = re.match(OFFERS_RULES['rule'], offer)
                 if not result:
                     continue
-                if rule ==
+                methods[rule](result.groupdict()['group_quantity'], result.groupdict()['item'])
