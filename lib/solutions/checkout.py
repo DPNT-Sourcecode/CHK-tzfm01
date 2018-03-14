@@ -3,8 +3,8 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    if not isinstance(skus, str):
-        return -1
+    # if not isinstance(skus, str):
+    #     return -1
     skus = skus.upper()
     skus_copy = skus
     # if skus == ' ':
