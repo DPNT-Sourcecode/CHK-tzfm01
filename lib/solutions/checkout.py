@@ -12,7 +12,7 @@ def checkout(skus):
         return -1
     items = ['A', 'B', 'C', 'D']
     for item in items:
-        skus_copy.replace(item, '')
+        skus_copy = skus_copy.replace(item, '')
     if skus_copy != '':
         return -1
 
