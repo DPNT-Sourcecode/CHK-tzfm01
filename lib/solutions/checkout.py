@@ -10,7 +10,7 @@ def checkout(skus):
     if skus == ' ':
         # if it's a string with a space
         return -1
-    items = ['A', 'B', 'C', 'D']
+    items = ['A', 'B', 'C', 'D', 'E']
     for item in items:
         skus_copy = skus_copy.replace(item, '')
     if skus_copy != '':
