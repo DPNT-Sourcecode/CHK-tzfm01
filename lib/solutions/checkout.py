@@ -17,7 +17,7 @@ PRICE_OFFERS = {
     'O':{'p': 10, },
     'P':{'p': 50, 'o': {5: 200}, 't': 1},
     'Q':{'p': 30, 'o': {3: 80}, 't': 1},
-    'R':{'p': 50, 'o': {'Q': 3}, 't':4},
+    'R':{'p': 50, 'o': {'dependency':'Q', 'group':3}, 't':4},
     'S':{'p': 30, },
     'T':{'p': 20, },
     'U':{'p': 40, 'o': {4: 3}, 't': 3},
@@ -29,7 +29,7 @@ PRICE_OFFERS = {
 }
 
 OFFER_TYPE = {
-    1: itemx_stacked,
+    1: 'itemx_stacked',
     2: 'itemx_stacked',
     3: 'one_free',
     4: 'nX_Y_free'
@@ -64,6 +64,8 @@ def one_free(item, quantity):
     total_price += quantity * individual_price
     return total_price
 
+def nX_Y_free(item, quantity):
+    offer = PRICE_OFFERS[item]
 
 # noinspection PyUnusedLocal
 # skus = unicode string
