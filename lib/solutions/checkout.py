@@ -2,6 +2,11 @@
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+def calculate_Bs(Es):
+    free_bs = Es // 2
+    pay_bs = Es % 2
+    return {'free': free_bs, 'pay': pay_bs}
+
 def checkout(skus):
     if not isinstance(skus, unicode):
         return -1
@@ -22,13 +27,15 @@ def checkout(skus):
     As = skus.count('A')
 
     Bs = skus.count('B')
-
+    Es = skus.count('E') * 40
     Cs = skus.count('C') * 20
     Ds = skus.count('D') * 15
     as_sum = 0
     if As > 0:
+        as_sum += (As // 5) * 200
         as_sum += (As // 3) * 130
         as_sum += (As % 3) * 50
+    if
     bs_sum = 0
     if Bs > 0:
         bs_sum += (Bs // 2) * 45
