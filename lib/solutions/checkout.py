@@ -6,6 +6,13 @@ def calculate_Bs(Es):
     free_bs = Es // 2
     return free_bs
 
+def calculate_As(As):
+    # apply 5x offer
+    as_5x = (As // 5) * 200
+    as_3x = ((As % 5) // 3) * 130
+    as_individual = ((As % 5) % 3) * 50
+    return sum([as_individual, as_3x, as_5x])
+
 def checkout(skus):
     if not isinstance(skus, unicode):
         return -1
@@ -26,15 +33,15 @@ def checkout(skus):
     As = skus.count('A')
 
     Bs = skus.count('B')
-    Es = skus.count('E') * 40
+    Es = skus.count('E')
+    es_sum = Es * 40
     Cs = skus.count('C') * 20
     Ds = skus.count('D') * 15
     as_sum = 0
     if As > 0:
-        as_sum += (As // 5) * 200
-        as_sum += (As // 3) * 130
-        as_sum += (As % 3) * 50
-    if
+        as_sum +=calculate_As(As)
+
+    Bs = Bs - calculate_Bs(Es)
     bs_sum = 0
     if Bs > 0:
         bs_sum += (Bs // 2) * 45
@@ -43,5 +50,5 @@ def checkout(skus):
     print 'Bs', bs_sum
     print 'Cs', Cs
     print 'Ds', Ds
-    return Cs + Ds + bs_sum + as_sum
+    return Cs + Ds + bs_sum + as_sum + es_sum
 
