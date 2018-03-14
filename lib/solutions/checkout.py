@@ -17,8 +17,8 @@ def calculate_As(As):
     return sum([as_individual, as_3x, as_5x])
 
 def checkout(skus):
-    if not isinstance(skus, unicode):
-        return -1
+    # if not isinstance(skus, unicode):
+    #     return -1
 
     skus_copy = skus
     if skus == ' ':
@@ -28,7 +28,7 @@ def checkout(skus):
     for item in items:
         skus_copy = skus_copy.replace(item, '')
     if skus_copy != '':
-        print skus_copy
+        print 'replaces ',skus_copy
         return -1
 
 
