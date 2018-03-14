@@ -72,8 +72,5 @@ class Item(object):
         :return:
         """
         for offer in self.offers:
-            try:
-                result = re.match(OFFERS_RULES['nX_Y_free'], offer)
-                if result
-            except Exception as err:
-                print 'unrecognized offer: {}. Error: {}'.format(offer, err)
+            result = re.match(OFFERS_RULES['nX_Y_free'], offer)
+            if result:
