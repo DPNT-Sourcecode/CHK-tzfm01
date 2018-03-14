@@ -4,8 +4,7 @@
 # skus = unicode string
 def calculate_Bs(Es):
     free_bs = Es // 2
-    pay_bs = Es % 2
-    return {'free': free_bs, 'pay': pay_bs}
+    return free_bs
 
 def checkout(skus):
     if not isinstance(skus, unicode):
