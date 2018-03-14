@@ -1,4 +1,69 @@
 
+PRICE_OFFERS = {
+    'A':{'p': 50, 'o': {3: 130, 5: 200}, 't': 2},
+    'B':{'p': 30, 'o': {2: 45}, 't': 1},
+    'C':{'p': 20, },
+    'D':{'p': 15, },
+    'E':{'p': 40, 'o': {'B': 2}, 't': 4},
+    'F':{'p': 10, 'o': {3: 2}, 't': 3},
+    'G':{'p': 20, },
+    'H':{'p': 10, 'o': {5: 45, 10: 80}, 't': 2},
+    'I':{'p': 35, },
+    'J':{'p': 60, },
+    'K':{'p': 80, 'o': {2: 150}, 't': 1},
+    'L':{'p': 90, },
+    'M':{'p': 15, },
+    'N':{'p': 40, 'o': {'M': 3}, 't': 4},
+    'O':{'p': 10, },
+    'P':{'p': 50, 'o': {5: 200}, 't': 1},
+    'Q':{'p': 30, 'o': {3: 80}, 't': 1},
+    'R':{'p': 50, 'o': {'Q': 3}, 't':4},
+    'S':{'p': 30, },
+    'T':{'p': 20, },
+    'U':{'p': 40, 'o': {4: 3}, 't': 3},
+    'V':{'p': 50, 'o': {2: 90, 3: 130}, 't': 2},
+    'W':{'p': 20, },
+    'X':{'p': 90, },
+    'Y':{'p': 10, },
+    'Z':{'p': 50, },
+}
+
+OFFER_TYPE = {
+    1: itemx_stacked,
+    2: 'itemx_stacked',
+    3: 'one_free',
+    4: 'nX_Y_free'
+}
+
+
+def itemx_stacked(item, quantity):
+    offer = PRICE_OFFERS[item]['o']
+    # get best offer, sort descending the keys
+    best_offer = offer.keys.sort(reverse=True)
+    price = 0
+    for group in best_offer:
+        os = quantity // group
+        price += os * offer[group]
+        quantity -= os * group
+    # individual items
+    price += quantity * PRICE_OFFERS[item]['p']
+    return price
+
+
+def one_free(item, quantity):
+    offer = PRICE_OFFERS[item]['o']
+    individual_price = PRICE_OFFERS[item]['p']
+    total_price = 0
+    best_offer = offer.keys.sort(reverse=True)
+    for group in best_offer:
+        group_price = offer[group] * individual_price
+        os = quantity // group
+        total_price += os * group_price
+        quantity -= os * group
+    # individual items
+    total_price += quantity * individual_price
+    return total_price
+
 
 # noinspection PyUnusedLocal
 # skus = unicode string
