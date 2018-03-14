@@ -105,3 +105,4 @@ def checkout(skus):
     print 'Es', es_sum
     print 'Fs', fs_sum
     return Cs + Ds + bs_sum + as_sum + es_sum + fs_sum
+
