@@ -15,14 +15,15 @@ class TestHello(unittest.TestCase):
         self.assertEqual(hello('Mihai'), 'Hello, Mihai!')
 
 
-class TestHello(unittest.TestCase):
+class TestCheckout(unittest.TestCase):
     def test_checkout_0(self):
         self.assertEqual(checkout(""), 0)
 
     def test_checkout_A(self):
-        self.assertEqual(checkout("A"), 50)
+        self.assertEqual(checkout("AA"), 50)
 
     def test_checkout_B(self):
         self.assertEqual(checkout("B"), 30)
+
 if __name__ == '__main__':
     unittest.main()
