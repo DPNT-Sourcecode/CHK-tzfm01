@@ -5,15 +5,20 @@
 def checkout(skus):
     if not isinstance(skus, str):
         return -1
-    if not skus:
-        # if it's null string
-        return -1
+    skus = skus.upper()
+    skus_copy = skus
     if skus == ' ':
         # if it's a string with a space
         return -1
-    skus = skus.upper()
+    items = ['A', 'B', 'C', 'D']
+    for item in items:
+        skus_copy.replace(item, '')
+    if skus_copy != '':
+        return -1
+
+
+
     As = skus.count('A')
-    if As != 0:
 
     Bs = skus.count('B')
 
