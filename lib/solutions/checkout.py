@@ -5,7 +5,7 @@
 def checkout(skus):
     if not isinstance(skus, unicode):
         return -1
-    skus = skus.upper()
+
     skus_copy = skus
     if skus == ' ':
         # if it's a string with a space
